@@ -2,11 +2,11 @@
 
 ## Paint with Emojis!
 
-### Drag to draw
-### Click to make space
-### 'n' to change emojis
-### BACKSPACE to clear canvas
-### 'i' to bring up instructions
-### ENTER to take screenshot!
+Click to draw.
+Press BACKSPACE to clear.
+Press 's' to switch emoji.
+Press ENTER to save screenshot.
+Press 'i' to show emoji list.
+Press 'z' to increase brush size, 'x' to decrease.
 
 **Make sure to clear the canvas when text is onscreen before taking a screenshot!**

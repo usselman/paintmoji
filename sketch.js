@@ -31,7 +31,7 @@ function setup() {
     text("Press ENTER to save screenshot.", 10, 230);
     text("Press 'i' to show emoji list.", 10, 280);
     text("Press 'z' to increase brush size, 'x' to decrease.", 10, 330);
-    text("Press 'c' to hide text", 10, 380);
+    text("Press 'c' to change text color", 10, 380);
     //text("Currently selected emoji: " + String.fromCodePoint(emojis[currentEmojiIndex]), 10, 310);
     text("Clear screen of text before screenshotting!", 10, 430);
 }
