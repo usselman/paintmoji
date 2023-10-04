@@ -9,4 +9,4 @@
 ### 'i' to bring up instructions
 ### ENTER to take screenshot!
 
-** Make sure to clear the canvas when text is onscreen before taking a screenshot! **
+**Make sure to clear the canvas when text is onscreen before taking a screenshot!**
