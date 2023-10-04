@@ -18,7 +18,7 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     background(255);
     frameRate(100);
-    textSize(windowWidth / 50);
+    textSize(windowWidth / 42);
     //text("Press 'i' for instructions", 10, 60);
 }
 
@@ -33,6 +33,9 @@ function draw() {
         text("Drag to draw, click to create space.", 10, 60);
         text("Press BACKSPACE to clear.", 10, 110);
         text("Press 'n' to switch emoji.", 10, 160);
+        text("Press ENTER to save screenshot.", 10, 210)
+        text("Press 'i' for instructions.", 10, 260);
+        text("Clear screen of text before screenshotting!", 10, 310);
     }
 }
 
@@ -56,6 +59,9 @@ function keyPressed() {
         text("Drag to draw, click to create space.", 10, 60);
         text("Press BACKSPACE to clear.", 10, 110);
         text("Press 'n' to switch emoji.", 10, 160);
+        text("Press ENTER to save screenshot.", 10, 210)
+        text("Press 'i' for instructions.", 10, 260);
+        text("Clear screen of text before screenshotting!", 10, 310);
     }
 }
 
