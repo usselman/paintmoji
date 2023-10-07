@@ -47,6 +47,7 @@ function setup() {
     textSize(windowWidth / 42);
     textSize(25);
     fill(textColor);
+    displayInstructions();
     displayButtons();
     takeSnapshot();
 }
@@ -70,7 +71,8 @@ function displayButtons() {
 
 function displayInstructions() {
     // let emojiSpan = createSpan(`Currently selected emoji: ${String.fromCodePoint(emojis[currentEmojiIndex])}`);
-    // emojiSpan.position(20, 50);
+    // emojiSpan.position(50, 50);
+    //text(String.fromCodePoint(emojis[currentEmojiIndex]), mouseX, mouseY);
     // let instructionSpan = createSpan(`
     // Click to draw! <br/> 
     // Press BACKSPACE to clear <br/> 
@@ -91,6 +93,8 @@ function windowResized() {
 
 function draw() {
     displayInstructions();
+    //text(String.fromCodePoint(emojis[currentEmojiIndex]), mouseX, mouseY);
+
 }
 
 function keyPressed() {

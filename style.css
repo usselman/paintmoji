@@ -38,5 +38,6 @@ p.instructions {
 }
 
 #defaultCanvas0 {
-    border: 5px solid black;
+    border: 2px solid black;
+    border-radius: 5px;
 }
