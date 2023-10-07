@@ -27,48 +27,61 @@ let saveButton;
 let clearButton;
 let emojiButton;
 
+let canvasConstant = 550;
+
 function setup() {
-    createCanvas(windowWidth, windowHeight);
+    //background(0);
+    //size(windowWidth, windowHeight);
+    push();
+    let canvas = createCanvas(canvasConstant, canvasConstant);
+    translate(width / 2, height / 2);
+    canvas.center('horizontal');
+    canvas.center('vertical');
+    stroke(0);
+    strokeWeight(3);
+    fill(50, 50, 50);
+    rect(0, 0, canvasConstant - 5, canvasConstant - 5);
     background(255);
-    frameRate(100);
+    pop();
+    frameRate(1000);
     textSize(windowWidth / 42);
     textSize(25);
     fill(textColor);
     displayButtons();
-    //displayInstructions();
     takeSnapshot();
 }
 
 function displayButtons() {
-    //textSize(50);
-    undoButton = createButton('Undo');
-    undoButton.size(60, 20);
-    undoButton.position(windowWidth / 2 - 80, 50);
-    undoButton.mousePressed(undo);
+    // fill(textColor);
+    // stroke(0);
+    // textSize(20);
+    // undoButton = createButton('↩️');
+    // undoButton.size(100, 40);
+    // //undoButton.center('horizontal');
+    // undoButton.position(windowWidth / 2 + 30, canvasConstant * 1.38);
+    // undoButton.mousePressed(undo);
 
-    redoButton = createButton('Redo');
-    redoButton.size(60, 20);
-    redoButton.position(windowWidth / 2 + 80, 50);
-    redoButton.mousePressed(redo);
+    // redoButton = createButton('↪️');
+    // redoButton.size(100, 40);
+    // redoButton.position(windowWidth / 2 - 100, canvasConstant * 1.38);
+    // redoButton.mousePressed(redo);
+    // noStroke();
 }
 
 function displayInstructions() {
-    // for (let i = 0; i < emojis.length; i++) {
-    //     text(String.fromCodePoint(emojis[i]), 10 + (i * 50), 30);
-    // }
-    let emojiSpan = createSpan(`Currently selected emoji: ${String.fromCodePoint(emojis[currentEmojiIndex])}`);
-    emojiSpan.position(20, 50);
-    let instructionSpan = createSpan(`
-    Click to draw! <br/> 
-    Press BACKSPACE to clear <br/> 
-    Press 's' to switch emoji. <br/> 
-    Press ENTER to save screenshot. <br/> 
-    Press 'z' to increase brush size <br/> 
-    Press 'c' to change text color <br/> 
-    Press 'u' to undo, 'r' to redo <br/> 
-    (Instructions and buttons do not render in screenshot) <br/> 
-    `);
-    instructionSpan.position(20, 80);
+    // let emojiSpan = createSpan(`Currently selected emoji: ${String.fromCodePoint(emojis[currentEmojiIndex])}`);
+    // emojiSpan.position(20, 50);
+    // let instructionSpan = createSpan(`
+    // Click to draw! <br/> 
+    // Press BACKSPACE to clear <br/> 
+    // Press 's' to switch emoji. <br/> 
+    // Press ENTER to save screenshot. <br/> 
+    // Press 'z' to increase brush size <br/> 
+    // Press 'c' to change text color <br/> 
+    // Press 'u' to undo, 'r' to redo <br/> 
+    // (Instructions and buttons do not render in screenshot) <br/> 
+    // `);
+    // instructionSpan.position(20, 80);
 
 }
 
