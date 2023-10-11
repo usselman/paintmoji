@@ -27,14 +27,16 @@ let saveButton;
 let clearButton;
 let emojiButton;
 
-let canvasConstant = 550;
+let canvasConstant;
 
 function setup() {
     //background(0);
     //size(windowWidth, windowHeight);
     push();
+    canvasConstant = min(windowWidth, windowHeight) * 0.65;
+    textSize(windowWidth / 80);
     let canvas = createCanvas(canvasConstant, canvasConstant);
-    translate(width / 2, height / 2);
+    translate(windowWidth / 2, windowHeight / 2);
     canvas.center('horizontal');
     canvas.center('vertical');
     stroke(0);
@@ -44,8 +46,7 @@ function setup() {
     background(255);
     pop();
     frameRate(1000);
-    textSize(windowWidth / 42);
-    textSize(25);
+
     fill(textColor);
     displayInstructions();
     displayButtons();
@@ -70,8 +71,8 @@ function displayButtons() {
 }
 
 function displayInstructions() {
-    // let emojiSpan = createSpan(`Currently selected emoji: ${String.fromCodePoint(emojis[currentEmojiIndex])}`);
-    // emojiSpan.position(50, 50);
+    let emojiSpan = createSpan(`Currently selected emoji: ${String.fromCodePoint(emojis[currentEmojiIndex])}`);
+    emojiSpan.position(50, 50);
     //text(String.fromCodePoint(emojis[currentEmojiIndex]), mouseX, mouseY);
     // let instructionSpan = createSpan(`
     // Click to draw! <br/> 
