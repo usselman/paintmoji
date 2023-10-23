@@ -2,7 +2,7 @@
 
 ## Paint with Emojis!
 
-<img width="1440" alt="Screenshot 2023-10-22 at 11 13 15 PM" src="https://github.com/usselman/paintmoji/assets/19578049/67ec5290-a342-4ba4-ac2c-ee9d32fdebc0">
+<img width="1440" alt="Screenshot 2023-10-22 at 11 25 03 PM" src="https://github.com/usselman/paintmoji/assets/19578049/07fdf4c3-0f1c-4bdc-beef-bc81508b5c94">
 
 Click to draw.
 
