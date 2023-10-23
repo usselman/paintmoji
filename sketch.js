@@ -12,7 +12,7 @@ let emojis = [
 ];
 
 let currentEmojiIndex = 0;
-let brushSize = 30;
+let brushSize = 20;
 let textColor = [0, 0, 0]; // RGB
 
 let snapshots = []; // Array to hold snapshots of the canvas
@@ -34,7 +34,7 @@ function setup() {
     //size(windowWidth, windowHeight);
     //canvasConstant = min(windowWidth, windowHeight) * 0.65;
     textSize(windowWidth / 80);
-    let canvas = createCanvas(windowWidth * 0.75, windowHeight * 0.75);
+    let canvas = createCanvas(windowWidth * 0.4, windowWidth * 0.4);
     canvas.center('horizontal');
     canvas.parent('canvas-container');
     stroke(0);
