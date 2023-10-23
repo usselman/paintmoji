@@ -15,23 +15,30 @@
   <body>
     <main>
       <h1>Paintmoji!</h1>
-      <h2>💠 v0.1.2 💠</h2>
-      <p class="instructions" style="margin-left: 1em">
-        Click to draw! <br />
-        Press BACKSPACE to clear <br />
-        Press 's' to switch emoji. <br />
-        Press ENTER to save screenshot. <br />
-        Press 'z' to increase brush size <br />
-        'x' to decrease brush size <br />
-        Press 'c' to change text color <br />
-        Press 'u' to undo, 'r' to redo <br />
-        <span class="emojis" style="color: transparent; font-size: 1em"
-          >🌺 💘 🌾 🚀 🍋 🌊 💸 💎 🌿 💬</span
-        >
-      </p>
-      <p style="text-align: left; font-size: medium; color: #000">
-        🌺 💘 🌾 🚀 🍋 🌊 💸 💎 🌿 💬
-      </p>
+      <h2>💠 v0.1.3 💠</h2>
+      <h2 class="instructions" style="text-align: center">
+        <span style="font-size: 2em">Click to draw!</span>
+        <br />
+        • Press <span style="color: blue">BACKSPACE to clear</span> • Press
+        <span style="color: blue">'s' to switch emoji</span> • Press
+        <span style="color: blue">ENTER to save screenshot</span> • Press
+        <span style="color: blue">'z' to increase brush size</span> •
+        <span style="color: blue">'x' to decrease brush size</span> • Press
+        <span style="color: blue">'u' to undo, 'r' to redo</span> • <br />
+        <span class="emojis" style="font-size: 3em">
+          🌺 💘 🌾 🚀 🍋 🌊 💸 💎 🌿 💬
+        </span>
+      </h2>
+      <div
+        id="canvas-container"
+        style="
+          display: inline-block;
+          margin-left: auto;
+          margin-right: auto;
+          margin-bottom: 2em;
+        "
+      ></div>
+      <!-- <p>🌺 💘 🌾 🚀 🍋 🌊 💸 💎 🌿 💬</p> -->
     </main>
     <script src="sketch.js"></script>
   </body>

@@ -1,42 +1,53 @@
 body {
-    background: -webkit-linear-gradient(#0f0432, #f0aabb);
+    /* background: -webkit-linear-gradient(#0f0432, #f0aabb);
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
-    -webkit-background-clip: border-box;
+     background-attachment: fixed;
     -webkit-text-fill-color: transparent;
-    font-family: 'Pixelify Sans', sans-serif;;
+    */
+    background: linear-gradient(#ededee, #494748);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: 'Pixelify Sans', sans-serif;
+    max-height: fit-content;
 }
 
 h1 {
     text-align: center;
-    font-size: 50px;
-    /*color: black;*/
+    font-size: 3em;
+    color: #53Fabc;
     margin-bottom: 0px;
-    background: -webkit-linear-gradient(#53Fabc, #1C5432);
+    text-shadow: 2px 2px 2px black;
+    /* background: -webkit-linear-gradient(#53Fabc, #1C5432);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; */
+    
 }
 
 h2 {
     margin-top: 0px;
+    margin-left: 10%;
+    margin-right: 10%;
     text-align: center;
-    font-size: 20px;
-    background: -webkit-linear-gradient(#53Fabc, #1C5432);
+    font-size: 1em;
+    color: black;
+    /* background: -webkit-linear-gradient(#53Fabc, #1C5432);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent; */
 }
 
-p.instructions {
+h2.instructions {
     text-align: left;
     /*word-spacing: 0.25em;*/
-    background: -webkit-linear-gradient(#f3Fabc, #fC5432);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 1em;
     text-decoration: solid 2px black;
+}
+
+p {
+    color: black;
 }
 
 #defaultCanvas0 {
     border: 4px solid black;
-    border-radius: 5px;
+    border-radius: 10px;
 }
