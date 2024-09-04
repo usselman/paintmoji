@@ -1,14 +1,14 @@
 let emojis = [
-    127802, // 
-    128152, // 
-    127806, // 
-    128640, // 
-    127819, // 
-    127754, // 
-    128184, // 
-    128142, // 
-    127807, // 
-    128172  // 
+    127802, // 🌺
+    128152, // 💘
+    127806, // 🌾
+    128640, // 🚀
+    127819, // 🍋
+    127754, // 🌊
+    128184, // 💸
+    128142, // 💎
+    127807, // 🌿
+    128172  // 💬
 ];
 
 let currentEmojiIndex = 0;
@@ -18,104 +18,42 @@ let textColor = [0, 0, 0]; // RGB
 let snapshots = []; // Array to hold snapshots of the canvas
 let currentSnapshotIndex = -1; // Index to keep track of the current snapshot
 
-/*
-* DOM BUTTONS
-*/
-let undoButton;
-let redoButton;
-let saveButton;
-let clearButton;
-let emojiButton;
-
-let canvasConstant;
-
 function setup() {
-    //background(0);
-    //size(windowWidth, windowHeight);
-    //canvasConstant = min(windowWidth, windowHeight) * 0.65;
-    textSize(windowWidth / 80);
-    let canvas = createCanvas(windowWidth * 0.4, windowWidth * 0.4);
-    canvas.center('horizontal');
+    let canvas = createCanvas(windowWidth, windowHeight);
     canvas.parent('canvas-container');
-    stroke(0);
-    strokeWeight(3);
-
     background(255);
-    frameRate(1000);
+    frameRate(60);
 
-    fill(textColor);
-    displayInstructions();
-    displayButtons();
+    // Setup brush size slider
+    let brushSlider = select('#brush-size');
+    brushSlider.input(() => {
+        brushSize = brushSlider.value();
+    });
+
+    // Setup emoji selector
+    let emojiSelect = select('#emoji-select');
+    emojiSelect.changed(() => {
+        currentEmojiIndex = emojiSelect.elt.selectedIndex;
+    });
+
     takeSnapshot();
 }
 
-function displayButtons() {
-    // fill(textColor);
-    // stroke(0);
-    // textSize(20);
-    // undoButton = createButton('↩️');
-    // undoButton.size(100, 40);
-    // //undoButton.center('horizontal');
-    // undoButton.position(windowWidth / 2 + 30, canvasConstant * 1.38);
-    // undoButton.mousePressed(undo);
-
-    // redoButton = createButton('↪️');
-    // redoButton.size(100, 40);
-    // redoButton.position(windowWidth / 2 - 100, canvasConstant * 1.38);
-    // redoButton.mousePressed(redo);
-    // noStroke();
-}
-
-function displayInstructions() {
-    // let emojiSpan = createSpan(`Currently selected emoji: ${String.fromCodePoint(emojis[currentEmojiIndex])}`);
-    // emojiSpan.position(50, 50);
-    // //text(String.fromCodePoint(emojis[currentEmojiIndex]), mouseX, mouseY);
-    // let instructionSpan = createSpan(`
-    // Click to draw! <br/> 
-    // Press BACKSPACE to clear <br/> 
-    // Press 's' to switch emoji. <br/> 
-    // Press ENTER to save screenshot. <br/> 
-    // Press 'z' to increase brush size <br/> 
-    // Press 'c' to change text color <br/> 
-    // Press 'u' to undo, 'r' to redo <br/> 
-    // (Instructions and buttons do not render in screenshot) <br/> 
-    // `);
-    // instructionSpan.position(20, 80);
-
+function draw() {
+    // Instructions and controls are now shown in the HTML, no need to render them here
 }
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
 
-function draw() {
-    displayInstructions();
-
-}
-
 function keyPressed() {
     if (keyCode === ENTER) {
         saveCanvas('paintmoji', 'png'); // Capture the screenshot
     }
-    if (key === 's') {
-        // Switch to the next emoji in the array
-        currentEmojiIndex = (currentEmojiIndex + 1) % emojis.length;
-    }
     if (keyCode === BACKSPACE) {
         // Clear the canvas
         background(255);
-    }
-    if (key === 'z') {
-        brushSize += 5;
-    }
-    if (key === 'x') {
-        brushSize = max(5, brushSize - 5);
-    }
-    if (key === 'c') {
-        textColor = [random(255), random(255), random(255)];
-    }
-    if (keyIsDown(73)) {
-        displayInstructions();
     }
     if (key === 'u') {
         undo();
@@ -126,9 +64,12 @@ function keyPressed() {
 }
 
 function mouseDragged() {
-    textSize(brushSize);
-    text(String.fromCodePoint(emojis[currentEmojiIndex]), mouseX, mouseY);
-    takeSnapshot();
+    // Only draw if the mouse is within the canvas bounds and not over any control or info boxes
+    if (mouseIsPressed && isMouseInCanvas() && !isMouseOverUI()) {
+        textSize(brushSize);
+        text(String.fromCodePoint(emojis[currentEmojiIndex]), mouseX, mouseY);
+        takeSnapshot();
+    }
 }
 
 function takeSnapshot() {
@@ -152,4 +93,19 @@ function redo() {
         currentSnapshotIndex++;
         image(snapshots[currentSnapshotIndex], 0, 0); // Display the next snapshot
     }
+}
+
+// Helper function to check if the mouse is within the canvas bounds
+function isMouseInCanvas() {
+    return mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height;
+}
+
+// Helper function to check if the mouse is over any UI element (info or controls boxes)
+function isMouseOverUI() {
+    const infoBox = document.getElementById('info-box').getBoundingClientRect();
+    const controlsBox = document.getElementById('controls-box').getBoundingClientRect();
+    return (
+        (mouseX > infoBox.left && mouseX < infoBox.right && mouseY > infoBox.top && mouseY < infoBox.bottom) ||
+        (mouseX > controlsBox.left && mouseX < controlsBox.right && mouseY > controlsBox.top && mouseY < controlsBox.bottom)
+    );
 }

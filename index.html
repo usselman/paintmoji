@@ -1,45 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <meta charset="utf-8" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <main>
-      <h1>Paintmoji!</h1>
-      <h2>💠 v0.1.3 💠</h2>
-      <h2 class="instructions" style="text-align: center">
-        <span style="font-size: 2em">Click to draw!</span>
-        <br />
-        • Press <span style="color: blue">BACKSPACE to clear</span> • Press
-        <span style="color: blue">'s' to switch emoji</span> • Press
-        <span style="color: blue">ENTER to save screenshot</span> • Press
-        <span style="color: blue">'z' to increase brush size</span> •
-        <span style="color: blue">'x' to decrease brush size</span> • Press
-        <span style="color: blue">'u' to undo, 'r' to redo</span> • <br />
-        <span class="emojis" style="font-size: 3em">
-          🌺 💘 🌾 🚀 🍋 🌊 💸 💎 🌿 💬
-        </span>
-      </h2>
-      <div
-        id="canvas-container"
-        style="
-          display: inline-block;
-          margin-left: auto;
-          margin-right: auto;
-          margin-bottom: 2em;
-        "
-      ></div>
-      <!-- <p>🌺 💘 🌾 🚀 🍋 🌊 💸 💎 🌿 💬</p> -->
-    </main>
-    <script src="sketch.js"></script>
-  </body>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <meta charset="utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap" rel="stylesheet" />
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+    }
+
+    .rounded-box {
+      position: absolute;
+      background: rgba(230, 230, 230, 0.8);
+      border-radius: 15px;
+      padding: 10px;
+      margin: 0px;
+
+    }
+
+    #info-box {
+      top: 10px;
+      left: 10px;
+      max-width: 300px;
+      max-height: 200px;
+      text-align: center;
+    }
+
+    #controls-box {
+      top: 250px;
+      left: 10px;
+      width: 150px;
+    }
+
+    #canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-style: none;
+      border: 0;
+    }
+
+    canvas {
+      border: 0;
+      border-style: none;
+      border-radius: 15px;
+    }
+
+    #emoji-select {
+      width: 100%;
+      font-size: 1em;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="canvas-container"></div>
+  <div id="info-box" class="rounded-box">
+    <h1>Paintmoji!</h1>
+    <h2>💠 v0.1.3 💠</h2>
+    <div class="instructions">
+      <span style="font-size: 1.2em">Click to draw!</span>
+      <br />
+      • Press <span style="color: blue">BACKSPACE to clear</span> • Press
+      <span style="color: blue">ENTER to save screenshot</span> • Press
+      <span style="color: blue">'u' to undo, 'r' to redo</span> • <br />
+    </div>
+  </div>
+  <div id="controls-box" class="rounded-box">
+    <label for="brush-size">Brush Size:</label>
+    <input type="range" id="brush-size" min="5" max="100" value="20" />
+    <br />
+    <label for="emoji-select">Choose Emoji:</label>
+    <select id="emoji-select">
+      <option value="127802">🌺</option>
+      <option value="128152">💘</option>
+      <option value="127806">🌾</option>
+      <option value="128640">🚀</option>
+      <option value="127819">🍋</option>
+      <option value="127754">🌊</option>
+      <option value="128184">💸</option>
+      <option value="128142">💎</option>
+      <option value="127807">🌿</option>
+      <option value="128172">💬</option>
+    </select>
+  </div>
+  <script src="sketch.js"></script>
+</body>
+
 </html>
