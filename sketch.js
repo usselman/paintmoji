@@ -13,6 +13,7 @@ let emojis = [
 
 let currentEmojiIndex = 0;
 let brushSize = 20;
+let brushType = 'emoji'; // Default brush type
 let textColor = [0, 0, 0]; // RGB
 
 let snapshots = []; // Array to hold snapshots of the canvas
@@ -34,6 +35,13 @@ function setup() {
     let emojiSelect = select('#emoji-select');
     emojiSelect.changed(() => {
         currentEmojiIndex = emojiSelect.elt.selectedIndex;
+    });
+
+    // Setup brush type selector
+    let brushSelect = select('#brush-select');
+    brushSelect.changed(() => {
+        brushType = brushSelect.value();
+        toggleEmojiSelect(brushType === 'emoji');
     });
 
     takeSnapshot();
@@ -66,10 +74,45 @@ function keyPressed() {
 function mouseDragged() {
     // Only draw if the mouse is within the canvas bounds and not over any control or info boxes
     if (mouseIsPressed && isMouseInCanvas() && !isMouseOverUI()) {
-        textSize(brushSize);
-        text(String.fromCodePoint(emojis[currentEmojiIndex]), mouseX, mouseY);
+        drawBrush(mouseX, mouseY);
         takeSnapshot();
     }
+}
+
+function drawBrush(x, y) {
+    textSize(brushSize);
+    switch (brushType) {
+        case 'emoji':
+            text(String.fromCodePoint(emojis[currentEmojiIndex]), x, y);
+            break;
+        case 'circle':
+            ellipse(x, y, brushSize, brushSize);
+            break;
+        case 'square':
+            rect(x - brushSize / 2, y - brushSize / 2, brushSize, brushSize);
+            break;
+        case 'triangle':
+            triangle(x, y - brushSize / 2, x - brushSize / 2, y + brushSize / 2, x + brushSize / 2, y + brushSize / 2);
+            break;
+        case 'star':
+            drawStar(x, y, brushSize / 2, brushSize, 5);
+            break;
+    }
+}
+
+function drawStar(x, y, radius1, radius2, npoints) {
+    let angle = TWO_PI / npoints;
+    let halfAngle = angle / 2.0;
+    beginShape();
+    for (let a = 0; a < TWO_PI; a += angle) {
+        let sx = x + cos(a) * radius2;
+        let sy = y + sin(a) * radius2;
+        vertex(sx, sy);
+        sx = x + cos(a + halfAngle) * radius1;
+        sy = y + sin(a + halfAngle) * radius1;
+        vertex(sx, sy);
+    }
+    endShape(CLOSE);
 }
 
 function takeSnapshot() {
@@ -108,4 +151,9 @@ function isMouseOverUI() {
         (mouseX > infoBox.left && mouseX < infoBox.right && mouseY > infoBox.top && mouseY < infoBox.bottom) ||
         (mouseX > controlsBox.left && mouseX < controlsBox.right && mouseY > controlsBox.top && mouseY < controlsBox.bottom)
     );
+}
+
+// Toggle emoji select visibility based on brush type
+function toggleEmojiSelect(show) {
+    document.getElementById('emoji-select').style.display = show ? 'block' : 'none';
 }

@@ -24,7 +24,6 @@
       border-radius: 15px;
       padding: 10px;
       margin: 0px;
-
     }
 
     #info-box {
@@ -60,7 +59,8 @@
       border-radius: 15px;
     }
 
-    #emoji-select {
+    #emoji-select,
+    #brush-select {
       width: 100%;
       font-size: 1em;
     }
@@ -83,6 +83,15 @@
   <div id="controls-box" class="rounded-box">
     <label for="brush-size">Brush Size:</label>
     <input type="range" id="brush-size" min="5" max="100" value="20" />
+    <br />
+    <label for="brush-select">Brush Type:</label>
+    <select id="brush-select">
+      <option value="emoji">Emoji</option>
+      <option value="circle">Circle</option>
+      <option value="square">Square</option>
+      <option value="triangle">Triangle</option>
+      <option value="star">Star</option>
+    </select>
     <br />
     <label for="emoji-select">Choose Emoji:</label>
     <select id="emoji-select">
