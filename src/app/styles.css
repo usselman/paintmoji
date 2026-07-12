@@ -1,0 +1,454 @@
+:root {
+  --paper: #f2efe3;
+  --raised: #faf7eb;
+  --ink: #111;
+  --orange: #f36b2b;
+  --blue: #9dc9dd;
+  --muted: #d1cdc0;
+  --shadow: 5px 5px 0 #111;
+  font-family: Helvetica, Arial, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  font-variant-numeric: tabular-nums;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  overflow: hidden;
+}
+button,
+input,
+select {
+  font: inherit;
+  color: inherit;
+  border-radius: 0;
+}
+button {
+  min-height: 32px;
+  padding: 5px 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid var(--ink);
+  background: var(--raised);
+  cursor: pointer;
+}
+button:hover,
+button:focus-visible {
+  background: var(--blue);
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+button svg {
+  width: 14px;
+  height: 14px;
+}
+.primary {
+  background: var(--orange);
+  font-weight: 800;
+}
+.full {
+  width: 100%;
+  margin-bottom: 4px;
+}
+.shell {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(230px, 280px) minmax(350px, 1fr) minmax(
+      300px,
+      370px
+    );
+  grid-template-rows: 70px 1fr 30px;
+  grid-template-areas: "top top top" "left view right" "status status status";
+  background-image:
+    linear-gradient(#1111 1px, transparent 1px),
+    linear-gradient(90deg, #1111 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.topbar {
+  grid-area: top;
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  padding: 5px;
+  border-bottom: 3px solid var(--ink);
+  background: var(--raised);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.brand {
+  min-width: 230px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-right: 10px;
+  border-right: 3px solid;
+}
+.brand strong {
+  font-size: 23px;
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+}
+.brandIndex,
+.index {
+  padding: 4px;
+  background: var(--orange);
+  font:
+    700 9px ui-monospace,
+    monospace;
+  writing-mode: vertical-rl;
+}
+.brand > span:last-child {
+  font-size: 9px;
+  font-style: italic;
+}
+.headerMeta {
+  min-width: 105px;
+  max-width: 150px;
+  padding: 7px;
+  border-right: 1px solid;
+  overflow: hidden;
+}
+.headerMeta small {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+}
+.headerMeta b {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 11px;
+}
+.panel {
+  overflow: auto;
+  padding: 11px;
+  background: #f2efe3f5;
+}
+.left {
+  grid-area: left;
+  border-right: 3px solid;
+}
+.right {
+  grid-area: right;
+  border-left: 3px solid;
+}
+.panel section + section {
+  margin-top: 16px;
+  padding-top: 13px;
+  border-top: 3px solid;
+}
+.panel h2,
+.studio h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 9px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.panel h2 i {
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  color: var(--raised);
+  background: var(--ink);
+  font-style: normal;
+}
+.toolGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+}
+.toolGrid button {
+  min-height: 58px;
+  flex-direction: column;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+.toolGrid b {
+  font-size: 21px;
+}
+.toolGrid .active,
+.layers .selected {
+  background: var(--blue);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+.panel label {
+  display: grid;
+  gap: 4px;
+  margin: 8px 0;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.archive {
+  display: grid;
+  grid-template-columns: 1fr repeat(4, 30px);
+  gap: 2px;
+  margin: 3px 0;
+}
+.archive button:first-child {
+  justify-content: flex-start;
+  overflow: hidden;
+}
+.viewport {
+  grid-area: view;
+  position: relative;
+  overflow: auto;
+  display: grid;
+  place-items: center;
+  background-color: #d8d4c8;
+  background-image:
+    linear-gradient(45deg, #b9b5aa 25%, transparent 25%),
+    linear-gradient(-45deg, #b9b5aa 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #b9b5aa 75%),
+    linear-gradient(-45deg, transparent 75%, #b9b5aa 75%);
+  background-size: 24px 24px;
+  background-position:
+    0 0,
+    0 12px,
+    12px -12px,
+    -12px 0;
+}
+.viewportLabel {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  z-index: 3;
+  padding: 5px 8px;
+  border: 2px solid;
+  background: var(--raised);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.canvasWrap {
+  margin: 65px;
+  border: 7px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--orange);
+  background: transparent;
+  transform-origin: center;
+}
+.canvasWrap canvas {
+  display: block;
+  max-width: none;
+  touch-action: none;
+}
+.canvasWrap.showGrid canvas {
+  background-image:
+    linear-gradient(#1112 1px, transparent 1px),
+    linear-gradient(90deg, #1112 1px, transparent 1px);
+  background-size: 16px 16px;
+}
+.viewtools {
+  position: absolute;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  border: 2px solid;
+  background: var(--raised);
+  box-shadow: 4px 4px 0;
+}
+.layers article {
+  display: grid;
+  grid-template-columns: 32px 40px 1fr auto;
+  gap: 4px;
+  align-items: center;
+  margin: 5px 0;
+  padding: 4px;
+  border: 2px solid;
+  background: var(--raised);
+}
+.thumb {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 34px;
+  border: 2px solid;
+  background: repeating-conic-gradient(#ddd 0 25%, #fff 0 50%) 50%/10px 10px;
+  font: 700 8px monospace;
+}
+.layers input {
+  min-width: 0;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid;
+  background: transparent;
+}
+.layers small {
+  display: block;
+  font:
+    8px ui-monospace,
+    monospace;
+}
+.layerOps {
+  display: grid;
+  grid-template-columns: repeat(2, 26px);
+}
+.layerOps button {
+  min-height: 25px;
+  padding: 2px;
+}
+.layers .opacity {
+  grid-column: 2/5;
+}
+.layers .clear {
+  grid-column: 4;
+}
+.control {
+  grid-template-columns: 95px 1fr 48px !important;
+  align-items: center;
+  border-bottom: 1px solid #1114;
+  padding-bottom: 4px;
+}
+.control input,
+.control select {
+  min-width: 0;
+  width: 100%;
+}
+.control output {
+  text-align: right;
+  font: 9px monospace;
+}
+.hint {
+  font-size: 11px;
+  line-height: 1.35;
+}
+.status {
+  grid-area: status;
+  display: flex;
+  align-items: stretch;
+  background: var(--ink);
+  color: var(--raised);
+  overflow-x: auto;
+  white-space: nowrap;
+  font:
+    9px ui-monospace,
+    monospace;
+}
+.status span {
+  display: flex;
+  align-items: center;
+  padding: 5px 9px;
+  border-right: 1px solid;
+}
+.status span:first-child {
+  min-width: 300px;
+  color: var(--ink);
+  background: var(--orange);
+}
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 25px;
+  background: #1119;
+}
+.studio {
+  max-width: 94vw;
+  max-height: 94vh;
+  overflow: auto;
+  padding: 12px;
+  border: 3px solid;
+  background: var(--paper);
+  box-shadow: 10px 10px 0 var(--orange);
+}
+.studio header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 3px solid;
+}
+.studio header > div {
+  display: flex;
+  gap: 8px;
+}
+.studioTools {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.studioTools label {
+  display: grid;
+  font-size: 9px;
+  text-transform: uppercase;
+}
+.studioGrid {
+  display: grid;
+  width: max-content;
+  margin: 15px auto;
+  border: 3px solid;
+}
+.studioGrid button {
+  min-height: 0;
+  padding: 0;
+  border: 1px solid #1114;
+  background: var(--raised);
+  aspect-ratio: 1;
+}
+.studioGrid button.filled {
+  background: var(--ink);
+}
+.studioActions {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.preview {
+  padding: 12px;
+  border: 2px solid;
+  background: var(--blue);
+}
+@media (max-width: 1050px) {
+  .shell {
+    grid-template-columns: 230px 1fr;
+    grid-template-rows: 70px minmax(300px, 1fr) minmax(280px, 40vh) 30px;
+    grid-template-areas: "top top" "left view" "right right" "status status";
+  }
+  .right {
+    border: 0;
+    border-top: 3px solid;
+  }
+  .headerMeta {
+    display: none;
+  }
+}
+@media (max-width: 680px) {
+  .shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: 70px 48vh 1fr 30px;
+    grid-template-areas: "top" "view" "right" "status";
+  }
+  .left {
+    display: none;
+  }
+  .brand {
+    min-width: 190px;
+  }
+  .canvasWrap {
+    margin: 40px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+}

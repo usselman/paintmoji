@@ -1,0 +1,15 @@
+.modeGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.modeGrid .active {
+  background: var(--blue);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.canvasWrap:has(canvas:active) {
+  cursor: crosshair;
+}
